@@ -1,23 +1,29 @@
+cargo-features = ["profile-rustflags"]
+
 [package]
 name = "sw-render"
 version = "0.1.0"
-edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+edition = "2021"
 
 [profile.release]
 opt-level = 3
 lto = true
-debug = true
 
-[dev-dependencies]
-criterion = "0.3.4"
+[profile.release-funkey]
+inherits = "release"
+rustflags = ["-C", "target-cpu=cortex-a7", "-C", "target-feature=+neon,+vfp4", "-Z", "macro-backtrace"]
 
-[[bench]]
-name = "drawing_benchmark"
-harness = false
+# [profile.release-local]
+# inherits = "release"
 
 [dependencies]
-minifb = "0.19.3"
-ultraviolet = "0.8.1"
-rand = "0.8.4"
+palette = "0.7"
+obj-rs = "0.7"
+itertools = "0.13"
+derive_more = { version = "1", features = ["full"] }
+num = "0.4"
+approx = "0.5"
+glamour = "0.14.0"
+softbuffer = "0.4.6"
+winit = "0.30.5"
+
