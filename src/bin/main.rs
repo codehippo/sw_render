@@ -116,10 +116,6 @@ fn main() {
                         )
                         .unwrap();
 
-                    let elapsed_frames =
-                        (start.elapsed().as_millis() % (1_000 / FPS_TARGET) as u128) as f64
-                            / FPS_TARGET as f64;
-
                     if (width.get(), height.get()) != *old_size {
                         *old_size = (width.get(), height.get());
                     };
@@ -127,6 +123,11 @@ fn main() {
                     let mut window_buffer = surface.buffer_mut().unwrap();
 
                     let mut smart_buffer = FrameBuffer::new(&mut window_buffer, DISPLAY_DIMENSIONS);
+                    smart_buffer.clear();
+
+                    let elapsed_frames =
+                        (start.elapsed().as_millis() % (1_000 / FPS_TARGET) as u128) as f64
+                            / FPS_TARGET as f64;
 
                     rotate_around_y_axis = Transform3::from_scale_rotation_translation(
                         Vector3::ONE,

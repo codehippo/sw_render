@@ -146,4 +146,8 @@ impl<'a, D: DerefMut<Target = [u32]>> FrameBuffer<'a, D> {
             self.draw_line_inside(&cloned_p1, &cloned_p2, color);
         }
     }
+
+    pub fn clear(&mut self) {
+        self.data.fill(0);
+    }
 }
