@@ -4,6 +4,34 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/benches" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/debug-root" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/media" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/mnt" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/opt" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/proc" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/root" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/run" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/sys" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/usr/include/netpacket" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/usr/lib/lua" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/usr/share/glib-2.0/valgrind" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/usr/share/locale/am" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/usr/share/locale/an" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/usr/share/locale/bs" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/usr/share/locale/mai" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/usr/share/locale/mg" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/usr/share/locale/ps" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/usr/share/locale/si" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/usr/share/lua" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/usr/share/man/man7" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/arm-funkey-linux-musleabihf/sysroot/var" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/include/libfdisk" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/share/doc/patchelf" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/share/locale/am" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/share/locale/gd" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/share/locale/ku" />
+      <excludeFolder url="file://$MODULE_DIR$/funkey-sdk/share/mime" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

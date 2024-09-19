@@ -1,2 +1,4 @@
 /target
 /funkey-sdk
+/.idea
+/Cargo.lock
