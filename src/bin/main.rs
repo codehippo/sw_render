@@ -10,10 +10,10 @@ use sw_render::buffers::frame::FrameBuffer;
 use sw_render::common::camera::PerspectiveCamera;
 use sw_render::common::space::{ScreenPoint, WorldPoint, WorldSpace, WorldVector};
 use sw_render::objects::mesh::Mesh;
-use winit::dpi::{LogicalSize, PhysicalSize};
+use winit::dpi::PhysicalSize;
 use winit::event::{Event, WindowEvent};
 use winit::event_loop::{ControlFlow, EventLoop};
-use winit::window::{Window, WindowAttributes};
+use winit::window::Window;
 
 const WIDTH: usize = 480;
 const HEIGHT: usize = 480;
@@ -21,8 +21,6 @@ const HEIGHT: usize = 480;
 const FPS_TARGET: usize = 60;
 
 const DISPLAY_DIMENSIONS: Vector2<u32> = Vector2::new(WIDTH as u32, HEIGHT as u32);
-
-const PIXEL_COUNT: usize = WIDTH * HEIGHT;
 
 fn transform_vertex(
     vertex: &WorldPoint,

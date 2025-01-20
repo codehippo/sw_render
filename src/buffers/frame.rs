@@ -1,5 +1,6 @@
 use crate::common::space::{ScreenPoint, ScreenScalar};
 use glamour::Vector2;
+use num::traits::ConstZero;
 use palette::{rgb, Srgb};
 use std::ops::DerefMut;
 
@@ -26,15 +27,19 @@ impl<'a, D: DerefMut<Target = [u32]>> FrameBuffer<'a, D> {
 
     // Cohen-Sutherland algorithm
     fn compute_outcode(&self, x: ScreenScalar, y: ScreenScalar) -> u8 {
+        let width = self.width as ScreenScalar;
+        let height = self.height as ScreenScalar;
+
         let mut code = Self::INSIDE;
-        if x < 0.0 {
+
+        if x < ScreenScalar::ZERO {
             code |= Self::LEFT;
-        } else if x > self.width as ScreenScalar {
+        } else if x > width {
             code |= Self::RIGHT;
         }
-        if y < 0.0 {
+        if y < ScreenScalar::ZERO {
             code |= Self::BOTTOM;
-        } else if y > self.height as ScreenScalar {
+        } else if y > height {
             code |= Self::TOP;
         }
 
@@ -49,33 +54,40 @@ impl<'a, D: DerefMut<Target = [u32]>> FrameBuffer<'a, D> {
         mut outcode1: u8,
         mut outcode2: u8,
     ) -> bool {
+        let width = self.width as ScreenScalar;
+        let height = self.height as ScreenScalar;
+
         loop {
-            if (outcode1 | outcode2) == 0 {
+            if (outcode1 | outcode2) == Self::INSIDE {
                 // Both points are inside the screen
                 return true;
-            } else if (outcode1 & outcode2) != 0 {
+            } else if (outcode1 & outcode2) != Self::INSIDE {
                 // Both points are outside the screen on the same side
                 return false;
             } else {
                 // At least one point is outside, find an outside point
-                let outcode_out = if outcode1 != 0 { outcode1 } else { outcode2 };
+                let outcode_out = if outcode1 != Self::INSIDE {
+                    outcode1
+                } else {
+                    outcode2
+                };
 
                 // Find intersection point
                 let x: ScreenScalar;
                 let y: ScreenScalar;
 
                 if (outcode_out & Self::TOP) != 0 {
-                    x = p1.x + (p2.x - p1.x) * (self.height as ScreenScalar - p1.y) / (p2.y - p1.y);
-                    y = self.height as f32;
+                    x = p1.x + (p2.x - p1.x) * (height - p1.y) / (p2.y - p1.y);
+                    y = height;
                 } else if (outcode_out & Self::BOTTOM) != 0 {
-                    x = p1.x + (p2.x - p1.x) * (0.0 - p1.y) / (p2.y - p1.y);
-                    y = 0.0;
+                    x = p1.x + (p2.x - p1.x) * (ScreenScalar::ZERO - p1.y) / (p2.y - p1.y);
+                    y = ScreenScalar::ZERO;
                 } else if (outcode_out & Self::RIGHT) != 0 {
-                    y = p1.y + (p2.y - p1.y) * (self.width as ScreenScalar - p1.x) / (p2.x - p1.x);
-                    x = self.width as f32;
+                    y = p1.y + (p2.y - p1.y) * (width - p1.x) / (p2.x - p1.x);
+                    x = width;
                 } else {
-                    y = p1.y + (p2.y - p1.y) * (0.0 - p1.x) / (p2.x - p1.x);
-                    x = 0.0;
+                    y = p1.y + (p2.y - p1.y) * (ScreenScalar::ZERO - p1.x) / (p2.x - p1.x);
+                    x = ScreenScalar::ZERO;
                 }
 
                 // Replace the outside point with the intersection point
@@ -138,12 +150,12 @@ impl<'a, D: DerefMut<Target = [u32]>> FrameBuffer<'a, D> {
         if (outcode1 | outcode2) == Self::INSIDE {
             self.draw_line_inside(p1, p2, color);
         } else {
-            let mut cloned_p1 = p1.clone();
-            let mut cloned_p2 = p2.clone();
+            let mut p1_copy = *p1;
+            let mut p2_copy = *p2;
 
-            self.clip_line(&mut cloned_p1, &mut cloned_p2, outcode1, outcode2);
+            self.clip_line(&mut p1_copy, &mut p2_copy, outcode1, outcode2);
 
-            self.draw_line_inside(&cloned_p1, &cloned_p2, color);
+            self.draw_line_inside(&p1_copy, &p2_copy, color);
         }
     }
 
