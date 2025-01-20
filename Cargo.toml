@@ -17,13 +17,13 @@ rustflags = ["-C", "target-cpu=cortex-a7", "-C", "target-feature=+neon,+vfp4", "
 # inherits = "release"
 
 [dependencies]
-palette = "0.7"
-obj-rs = "0.7"
-itertools = "0.13"
+palette = "0.7.6"
+obj-rs = "0.7.4"
+itertools = "0.14.0"
 derive_more = { version = "1", features = ["full"] }
-num = "0.4"
+num = "0.4.3"
 approx = "0.5"
-glamour = "0.14.0"
+glamour = "0.15.0"
 softbuffer = "0.4.6"
-winit = "0.30.5"
+winit = "0.30.8"
 
